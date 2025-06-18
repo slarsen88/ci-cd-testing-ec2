@@ -19,8 +19,10 @@ jobs:
           mkdir -p ~/.ssh
           echo "testing"
           echo "${{ secrets.KEY_TEST }}"
-          echo "testkey" >> ~/.ssh/id_rsa
+          echo "${{ secrets.EC2_SSH_KEY }}" >> ~/.ssh/id_rsa
+          echo "added the key"
           chmod 600 ~/.ssh/id_rsa
+          echo "adjusted the chmod"
           ssh-keyscan -H "${{ secrets.EC2_HOST }}" >> ~/.ssh/known_hosts
 
       - name: Deploy React App
